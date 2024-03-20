@@ -1,31 +1,17 @@
-import { ImageBackground, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ImageBackground, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import { Dimensions } from 'react-native';
 
+import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import React from 'react';
 
 import GlobalStyles from '~/Styles/GlobalStyles';
 
-import HomeNav from '../Component/HomeNav';
 import AnimeVideo from '~/Components/AnimeItems/AnimeVideo';
 
 import AnimeMV from '~/Components/AMV/AnimeMV';
 
 /*Data fake*/
-//Header
-const Header = [
-    {
-        name: 'Đề Xuất',
-        active: true,
-    },
-    {
-        name: 'Anime',
-        active: false,
-    },
-    {
-        name: 'trò chơi',
-        active: false,
-    },
-];
+
 //Anime
 const Anime = [
     { Name: 'Shikimori không chỉ dễ thương thôi đâu', Image: require('~/Assets/Image/Shikimori.png'), Quality: '4K' },
@@ -76,13 +62,10 @@ const AnimeMVs = [
 const windowWidth = Dimensions.get('window').width;
 // Chiều dài điện thoại
 const windowHeight = Dimensions.get('window').height;
-export default function HomePage() {
+
+export default function DeXuatHomePage() {
     return (
         <View style={styles.Page}>
-            {/* HeaderNavbar */}
-            <HomeNav style={{ paddingLeft: 10 }} Header={Header} />
-
-            {/* Header Title */}
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.HeaderWrapper}>
                     <Text style={[GlobalStyles.h4_Regular]}>Anime</Text>
@@ -132,12 +115,19 @@ const styles = StyleSheet.create({
     Page: {
         flex: 1,
         backgroundColor: GlobalStyles.white.color,
-        paddingTop: 30,
     },
     HeaderWrapper: {
         paddingLeft: 10,
         marginTop: 10,
         justifyContent: 'space-between',
         flexDirection: 'row',
+    },
+    Nav: {
+        marginLeft: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    NavText: {
+        marginRight: 10,
     },
 });

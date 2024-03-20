@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 
-export default function SearchPage() {
+export default function SearchHomePage() {
     return (
         <View>
-            <Text>SearchPage</Text>
+            <Text>Search Page</Text>
         </View>
     );
 }
