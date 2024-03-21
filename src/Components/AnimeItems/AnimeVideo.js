@@ -61,7 +61,9 @@ export default function AnimeVideo({
                     </ImageBackground>
                     {/* Name Anime */}
                     <Text style={[GlobalStyles.h4_Medium, { width: width, marginTop: 5 }]}>{Name}</Text>
-                    <Text style={[GlobalStyles.h4_Regular, GlobalStyles.gray, { width: width }]}>{ContinueText}</Text>
+                    <Text style={[GlobalStyles.h4_Regular, GlobalStyles.gray, { width: width - width * 0.2 }]}>
+                        {ContinueText}
+                    </Text>
                 </View>
             ) : (
                 <View>

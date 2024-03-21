@@ -5,11 +5,17 @@ import IconCustom from '~/Components/Icon/IconCustom';
 import CreateAnime from '~/Screens/AddVideo/CreateAnime';
 
 import HomePage from '~/Screens/Home/HomePage';
+
 import SearchResultPage from '~/Screens/KhamPha/SearchResult/SearchResultPage';
 import SearchPage from '~/Screens/KhamPha/SearchPage';
-import UserPage from '~/Screens/User/Access/UserPage/UserPage';
+
 import FollowPage from '~/Screens/TheoDoi/TheoDoiHome/FollowPage';
 
+import UserHomePage from '~/Screens/User/NotAcess/UserHomePage';
+import LoginHomePage from '~/Screens/User/NotAcess/LoginHome/LoginHomePage';
+import SDTPage from '~/Screens/User/NotAcess/LoginHome/XacNhanSDT/SDTPage';
+import LoginSDTPage from '~/Screens/User/NotAcess/LoginHome/Login/LoginSDT/LoginSDTPage';
+import ResgisterSDTPage from '~/Screens/User/NotAcess/LoginHome/Resgister/ResgisterSDT/ResgisterSDTPage';
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
@@ -18,6 +24,26 @@ function SearchHomePage() {
         <Stack.Navigator options={{ headerShown: false }}>
             <Stack.Screen name="SearchPage" options={{ headerShown: false }} component={SearchPage} />
             <Stack.Screen name="SearchResultPage" options={{ headerShown: false }} component={SearchResultPage} />
+        </Stack.Navigator>
+    );
+}
+
+function UserPage() {
+    return (
+        <Stack.Navigator options={{ headerShown: false }}>
+            <Stack.Screen name="UserHomePage" options={{ headerShown: false }} component={UserHomePage} />
+            <Stack.Screen name="LoginHome" options={{ headerShown: false }} component={LoginHome} />
+        </Stack.Navigator>
+    );
+}
+
+function LoginHome() {
+    return (
+        <Stack.Navigator options={{ headerShown: false }}>
+            <Stack.Screen name="LoginHomePage" options={{ headerShown: false }} component={LoginHomePage} />
+            <Stack.Screen name="SDTPage" options={{ headerShown: false }} component={SDTPage} />
+            <Stack.Screen name="LoginSDTPage" options={{ headerShown: false }} component={LoginSDTPage} />
+            <Stack.Screen name="ResgisterSDTPage" options={{ headerShown: false }} component={ResgisterSDTPage} />
         </Stack.Navigator>
     );
 }

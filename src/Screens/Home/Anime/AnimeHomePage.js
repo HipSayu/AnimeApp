@@ -7,8 +7,6 @@ import GlobalStyles from '~/Styles/GlobalStyles';
 
 import AnimeVideo from '~/Components/AnimeItems/AnimeVideo';
 
-import AnimeMV from '~/Components/AMV/AnimeMV';
-
 /*Data fake*/
 
 //Anime
@@ -19,33 +17,12 @@ const Anime = [
     { Name: 'Nhà có 5 tô bún', Image: require('~/Assets/Image/NhaCoNamNangDau.jpg'), Quality: '2K' },
 ];
 
-const AnimeMVs = [
-    {
-        NameVideo: 'Tưởng nhớ em anh chỉ muốn níu giữ thời gian',
-        Image: require('~/Assets/AmvImage/Chisato.jpg'),
-        AvatarImage: require('~/Assets/Avatar/HatsuneMiku.jpg'),
-        UserName: 'Hatsune Miku',
-        Time: '01:36',
-        Viewer: '100M',
-    },
-    {
-        NameVideo: 'Bị người bỏ tôi trở thành thầy cúng',
-        Image: require('~/Assets/AmvImage/Gojo.jpg'),
-        AvatarImage: require('~/Assets/Avatar/Gojo.png'),
-        UserName: 'Gojo Satoru',
-        Time: '01:36',
-        Viewer: '900M',
-    },
-    {
-        NameVideo: 'Lycoris ',
-        Image: require('~/Assets/AmvImage/AMV1.png'),
-        AvatarImage: require('~/Assets/Avatar/MaoMao.jpg'),
-        UserName: 'Gojo Satoru',
-        Time: '01:36',
-        Viewer: '900M',
-    },
+const DataNav = [
+    { Image: require('~/Assets/Icon/IconNav/List.png'), Name: 'Mục lục' },
+    { Image: require('~/Assets/Icon/IconNav/Clock.png'), Name: 'Lịch Chiếu' },
+    { Image: require('~/Assets/Icon/IconNav/RetroTV.png'), Name: 'Xếp hạng' },
+    { Image: require('~/Assets/Icon/IconNav/MembershipCard.png'), Name: 'Premium' },
 ];
-
 // 1. witdh : 138 height :182 text dưới
 // 2. witdh : 358 height :172
 // 3. witdh : 146 height :96
@@ -67,43 +44,41 @@ export default function AnimeHomePage() {
         <View style={styles.Page}>
             {/* Header Title */}
             <ScrollView showsVerticalScrollIndicator={false}>
-                <View style={styles.HeaderWrapper}>
-                    <Text style={[GlobalStyles.h4_Regular]}>Anime</Text>
-                    <ImageBackground
-                        style={{ width: 20, height: 20 }}
-                        source={require('~/Assets/Icon/ArrowIcon.png')}
-                    />
-                </View>
-                <View>
-                    <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ paddingLeft: 10 }}>
-                        {Anime.map((anime, index) => (
-                            <AnimeVideo
-                                key={index}
-                                marginRight={20}
-                                Quality={anime.Quality}
-                                Image={anime.Image}
-                                Name={anime.Name}
-                                width={windowWidth / 2.6}
-                                height={182}
-                            />
-                        ))}
-                    </ScrollView>
-                </View>
-
-                <View style={{ alignItems: 'center', marginTop: 20 }}>
-                    {/* ImageVideo */}
-                    {AnimeMVs.map((amv, index) => (
-                        <AnimeMV
-                            key={index}
-                            sourceAnime={amv.Image}
-                            sourceAvartar={amv.AvatarImage}
-                            NameVideo={amv.NameVideo}
-                            Time={amv.Time}
-                            UserName={amv.UserName}
-                            Viewer={amv.Viewer}
-                            inViewer={true}
-                        />
+                <ImageBackground
+                    borderRadius={5}
+                    style={{ width: windowWidth / 1.05, height: 173, marginTop: 10, flexDirection: 'column-reverse' }}
+                    source={require('~/Assets/Image/SoloLeveling.jpeg')}
+                >
+                    <Text style={[GlobalStyles.h4, { marginLeft: 5, marginBottom: 5, color: '#454545' }]}>
+                        Chỉ mình tôi thăng cấp
+                    </Text>
+                </ImageBackground>
+                <View
+                    style={{
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                        marginTop: 10,
+                        paddingHorizontal: 10,
+                    }}
+                >
+                    {DataNav.map((item, index) => (
+                        <View style={{ alignItems: 'center' }} key={index}>
+                            <ImageBackground source={item.Image} style={{ width: 50, height: 50 }} />
+                            <Text style={GlobalStyles.h4_Medium}>{item.Name}</Text>
+                        </View>
                     ))}
+                </View>
+                <View style={{ marginTop: 10 }}>
+                    <Text style={GlobalStyles.h4_Medium}>Tiếp tục xem</Text>
+                    <ScrollView>
+                        <AnimeVideo
+                            width={windowWidth / 2.2}
+                            height={96}
+                            Image={require('~/Assets/Image/DateAlive.png')}
+                            Name="Cuộc hẹn sống còn ss4"
+                            ContinueText="Đã xem đến tập 2 90%"
+                        />
+                    </ScrollView>
                 </View>
             </ScrollView>
             {/* Anime List */}
@@ -115,19 +90,6 @@ const styles = StyleSheet.create({
     Page: {
         flex: 1,
         backgroundColor: GlobalStyles.white.color,
-    },
-    HeaderWrapper: {
-        paddingLeft: 10,
-        marginTop: 10,
-        justifyContent: 'space-between',
-        flexDirection: 'row',
-    },
-    Nav: {
-        marginLeft: 10,
-        flexDirection: 'row',
         alignItems: 'center',
-    },
-    NavText: {
-        marginRight: 10,
     },
 });
