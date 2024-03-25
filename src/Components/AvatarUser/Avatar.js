@@ -16,6 +16,7 @@ const windowHeight = Dimensions.get('window').height;
 //4 . width : 40 height : 40 tên cạnh có time tên dưới
 
 export default function Avatar({
+    isSearch = false,
     TextHead = false,
     IsHasIcon = false,
     Avatar = require('~/Assets/Avatar/Rika.png'),
@@ -56,7 +57,7 @@ export default function Avatar({
     }
 
     return (
-        <TouchableOpacity>
+        <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}>
             <View
                 style={{
                     flexDirection: avatarName,
@@ -65,9 +66,11 @@ export default function Avatar({
                 }}
             >
                 {TextHead ? (
-                    <Text style={[GlobalStyles.h5_Regular, GlobalStyles.gray, { marginLeft: marginLeftText }]}>
-                        {Time}
-                    </Text>
+                    <>
+                        <Text style={[GlobalStyles.h5_Regular, GlobalStyles.gray, { marginLeft: marginLeftText }]}>
+                            {Time}
+                        </Text>
+                    </>
                 ) : (
                     <></>
                 )}
@@ -184,6 +187,21 @@ export default function Avatar({
                     <></>
                 )}
             </View>
+            {isSearch ? (
+                <View
+                    style={{
+                        backgroundColor: GlobalStyles.blue.color,
+                        padding: 9,
+                        borderRadius: 10,
+                        marginTop: 20,
+                        marginLeft: 10,
+                    }}
+                >
+                    <Text style={GlobalStyles.white}>theo dõi</Text>
+                </View>
+            ) : (
+                <></>
+            )}
         </TouchableOpacity>
     );
 }

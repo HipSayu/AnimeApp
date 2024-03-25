@@ -8,6 +8,7 @@ import HomePage from '~/Screens/Home/HomePage';
 
 import SearchResultPage from '~/Screens/KhamPha/SearchResult/SearchResultPage';
 import SearchPage from '~/Screens/KhamPha/SearchPage';
+import SearchingPage from '~/Screens/KhamPha/Searching/SearchingPage';
 
 import FollowPage from '~/Screens/TheoDoi/TheoDoiHome/FollowPage';
 
@@ -24,6 +25,7 @@ function SearchHomePage() {
         <Stack.Navigator options={{ headerShown: false }}>
             <Stack.Screen name="SearchPage" options={{ headerShown: false }} component={SearchPage} />
             <Stack.Screen name="SearchResultPage" options={{ headerShown: false }} component={SearchResultPage} />
+            <Stack.Screen name="SearchingPage" options={{ headerShown: false }} component={SearchingPage} />
         </Stack.Navigator>
     );
 }

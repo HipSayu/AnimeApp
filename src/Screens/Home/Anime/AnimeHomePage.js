@@ -1,6 +1,6 @@
 import { ImageBackground, ScrollView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Dimensions } from 'react-native';
-
+import { UseSelector, useDispatch, useSelector } from 'react-redux';
 import React from 'react';
 
 import GlobalStyles from '~/Styles/GlobalStyles';
@@ -23,62 +23,97 @@ const DataNav = [
     { Image: require('~/Assets/Icon/IconNav/RetroTV.png'), Name: 'Xếp hạng' },
     { Image: require('~/Assets/Icon/IconNav/MembershipCard.png'), Name: 'Premium' },
 ];
-// 1. witdh : 138 height :182 text dưới
-// 2. witdh : 358 height :172
-// 3. witdh : 146 height :96
-// 4. witdh : 173 height :96 /2.2
+const Continue = [
+    { Image: require('~/Assets/Image/DateAlive.png'), Name: 'Cuộc hẹn sống còn' },
+    { Image: require('~/Assets/Image/ChainsawMan.jpg'), Name: 'Chainsaw Man' },
+    { Image: require('~/Assets/Image/Spy.jpg'), Name: 'Spy x Family' },
+];
 
-//User
-//1.witdh : 44 height 44: Tên cạch text cạch có icon
-//2.width : 20 hegiht 20 : tến cạnh text trên view dưới
-// 3. width :50 height 59 : tên dưới
-//4 . width : 40 height : 40 tên cạnh có time tên dưới
-
-// Chiều rộng điện thoại
 const windowWidth = Dimensions.get('window').width;
-// Chiều dài điện thoại
+
 const windowHeight = Dimensions.get('window').height;
 
 export default function AnimeHomePage() {
+    const darkMode = useSelector((state) => state.AppReducer.darkMode);
+    const backgroundColor = {
+        backgroundColor: darkMode ? 'black' : 'white',
+    };
     return (
-        <View style={styles.Page}>
+        <View style={[styles.Page, backgroundColor]}>
             {/* Header Title */}
             <ScrollView showsVerticalScrollIndicator={false}>
-                <ImageBackground
-                    borderRadius={5}
-                    style={{ width: windowWidth / 1.05, height: 173, marginTop: 10, flexDirection: 'column-reverse' }}
-                    source={require('~/Assets/Image/SoloLeveling.jpeg')}
-                >
-                    <Text style={[GlobalStyles.h4, { marginLeft: 5, marginBottom: 5, color: '#454545' }]}>
-                        Chỉ mình tôi thăng cấp
-                    </Text>
-                </ImageBackground>
+                {/* Image */}
+                <View style={{ alignItems: 'center' }}>
+                    <ImageBackground
+                        borderRadius={5}
+                        style={{
+                            width: windowWidth / 1.05,
+                            height: 173,
+                            marginTop: 10,
+                            flexDirection: 'column-reverse',
+                        }}
+                        source={require('~/Assets/Image/SoloLeveling.jpeg')}
+                    >
+                        <Text style={[GlobalStyles.h4, { marginLeft: 5, marginBottom: 5, color: '#454545' }]}>
+                            Chỉ mình tôi thăng cấp
+                        </Text>
+                    </ImageBackground>
+                </View>
+                {/* Nav */}
                 <View
                     style={{
                         flexDirection: 'row',
                         justifyContent: 'space-between',
-                        marginTop: 10,
-                        paddingHorizontal: 10,
+                        marginTop: 20,
                     }}
                 >
                     {DataNav.map((item, index) => (
-                        <View style={{ alignItems: 'center' }} key={index}>
+                        <View style={{ alignItems: 'center', marginHorizontal: 10 }} key={index}>
                             <ImageBackground source={item.Image} style={{ width: 50, height: 50 }} />
                             <Text style={GlobalStyles.h4_Medium}>{item.Name}</Text>
                         </View>
                     ))}
                 </View>
-                <View style={{ marginTop: 10 }}>
-                    <Text style={GlobalStyles.h4_Medium}>Tiếp tục xem</Text>
-                    <ScrollView>
-                        <AnimeVideo
-                            width={windowWidth / 2.2}
-                            height={96}
-                            Image={require('~/Assets/Image/DateAlive.png')}
-                            Name="Cuộc hẹn sống còn ss4"
-                            ContinueText="Đã xem đến tập 2 90%"
-                        />
+                {/* Tiếp tục */}
+                <View style={{ marginTop: 20 }}>
+                    <Text style={[GlobalStyles.h4_Medium, { marginLeft: 10 }]}>Tiếp tục xem</Text>
+                    <ScrollView
+                        horizontal
+                        showsHorizontalScrollIndicator={false}
+                        style={{ flexDirection: 'row', marginLeft: 10 }}
+                    >
+                        {Continue.map((item, index) => (
+                            <AnimeVideo
+                                key={index}
+                                width={windowWidth / 2.5}
+                                height={96}
+                                Image={item.Image}
+                                Name={item.Name}
+                            />
+                        ))}
                     </ScrollView>
+                </View>
+                {/* Đang thịnh hành */}
+                <View style={{ marginTop: 20 }}>
+                    <Text style={[GlobalStyles.h4_Medium, { marginLeft: 10 }]}>Đang thịnh hành</Text>
+                    <View
+                        style={{
+                            flexWrap: 'wrap',
+                            flexDirection: 'row',
+                            justifyContent: 'space-between',
+                            marginLeft: 10,
+                        }}
+                    >
+                        {Continue.map((item, index) => (
+                            <AnimeVideo
+                                key={index}
+                                width={windowWidth / 2.2}
+                                height={96}
+                                Image={item.Image}
+                                Name={item.Name}
+                            />
+                        ))}
+                    </View>
                 </View>
             </ScrollView>
             {/* Anime List */}

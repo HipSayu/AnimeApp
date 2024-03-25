@@ -12,14 +12,18 @@ const windowHeight = Dimensions.get('window').height;
 export default function AnimeMV({
     Width = 1.05,
     Height = 172,
+    widthAvatar = 44,
     sourceAnime = require('~/Assets/AmvImage/AMV1.png'),
     sourceAvartar,
     UserName = 'Rikka',
     Time = '01:36',
     Viewer = '144M',
+    ViewAvatar = '',
     inViewer = false,
+    IsSearch = false,
     flexDirection = 'colum',
     NameVideo = 'Tưởng nhớ em "anh chỉ muốn níu giữ thời gian" ',
+    IsHasICon = true,
 }) {
     return (
         <View style={{ alignItems: 'center', marginTop: 20, flexDirection: flexDirection }}>
@@ -61,12 +65,13 @@ export default function AnimeMV({
             {/* User */}
             <Avatar
                 Avatar={sourceAvartar}
-                IsHasIcon={true}
-                Width={44}
-                Height={44}
+                IsHasIcon={IsHasICon}
+                Width={widthAvatar}
+                Height={widthAvatar}
                 UserName={UserName}
-                TextHead={false}
+                TextHead={IsSearch}
                 NameVideo={NameVideo}
+                Time={ViewAvatar}
             />
         </View>
     );
