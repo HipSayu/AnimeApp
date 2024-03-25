@@ -5,11 +5,10 @@ import GlobalStyles from '~/Styles/GlobalStyles';
 
 export default function UserResultPage() {
     return (
-        <ScrollView
-            style={{ backgroundColor: GlobalStyles.white.color }}
-            contentContainerStyle={{ alignItems: 'center' }}
-        >
-            <Avatar isSearch={true} Time="600 người theo dõi | 20 Videos" />
+        <ScrollView style={{ backgroundColor: GlobalStyles.white.color }} contentContainerStyle={{}}>
+            <View style={{ paddingHorizontal: 10 }}>
+                <Avatar isSearch={true} Time="600 người theo dõi | 20 Videos" />
+            </View>
         </ScrollView>
     );
 }

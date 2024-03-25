@@ -24,55 +24,64 @@ export default function AnimeMV({
     flexDirection = 'colum',
     NameVideo = 'Tưởng nhớ em "anh chỉ muốn níu giữ thời gian" ',
     IsHasICon = true,
+    IsUser = false,
+    IsHasAvatar = true,
 }) {
     return (
-        <View style={{ alignItems: 'center', marginTop: 20, flexDirection: flexDirection }}>
-            <ImageBackground
-                borderRadius={10}
-                resizeMode="cover"
-                style={{
-                    width: windowWidth / Width,
-                    height: Height,
-                    justifyContent: 'flex-end',
-                    flexDirection: 'column',
-                }}
-                source={sourceAnime}
-            >
-                <View
+        <View style={{ flexDirection: flexDirection, marginTop: IsUser ? 10 : 0 }}>
+            <View style={{ alignItems: 'center', marginTop: IsUser ? 10 : 20 }}>
+                <ImageBackground
+                    borderRadius={10}
+                    resizeMode="cover"
                     style={{
-                        marginBottom: 4,
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
+                        width: windowWidth / Width,
+                        height: Height,
+                        justifyContent: 'flex-end',
+                        flexDirection: 'column',
                     }}
+                    source={sourceAnime}
                 >
-                    {inViewer ? (
-                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <ImageBackground
-                                style={{ width: 21, height: 14, marginLeft: 5 }}
-                                source={require('~/Assets/Icon/View.png')}
-                            ></ImageBackground>
-                            <Text style={[GlobalStyles.h4_Regular, GlobalStyles.white, { marginLeft: 10 }]}>
-                                {Viewer}
-                            </Text>
-                        </View>
-                    ) : (
-                        <View></View>
-                    )}
+                    <View
+                        style={{
+                            marginBottom: 2,
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                        }}
+                    >
+                        {inViewer ? (
+                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                <ImageBackground
+                                    style={{ width: 21, height: 14, marginLeft: 5 }}
+                                    source={require('~/Assets/Icon/View.png')}
+                                ></ImageBackground>
+                                <Text style={[GlobalStyles.h4_Regular, GlobalStyles.white, { marginLeft: 10 }]}>
+                                    {Viewer}
+                                </Text>
+                            </View>
+                        ) : (
+                            <View></View>
+                        )}
 
-                    <Text style={[GlobalStyles.white, GlobalStyles.h4_Regular, { marginRight: 5 }]}>{Time}</Text>
-                </View>
-            </ImageBackground>
-            {/* User */}
-            <Avatar
-                Avatar={sourceAvartar}
-                IsHasIcon={IsHasICon}
-                Width={widthAvatar}
-                Height={widthAvatar}
-                UserName={UserName}
-                TextHead={IsSearch}
-                NameVideo={NameVideo}
-                Time={ViewAvatar}
-            />
+                        <Text style={[GlobalStyles.white, GlobalStyles.h5_Regular, { marginRight: 5 }]}>{Time}</Text>
+                    </View>
+                </ImageBackground>
+                {/* User */}
+            </View>
+            <View style={{ alignItems: 'flex-start' }}>
+                <Avatar
+                    Avatar={sourceAvartar}
+                    IsHasIcon={IsHasICon}
+                    Width={widthAvatar}
+                    Height={widthAvatar}
+                    UserName={UserName}
+                    TextHead={IsSearch}
+                    NameVideo={NameVideo}
+                    Time={ViewAvatar}
+                    isUser={IsUser}
+                    isAvatar={IsHasAvatar}
+                />
+            </View>
         </View>
     );
 }

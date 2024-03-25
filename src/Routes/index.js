@@ -11,12 +11,14 @@ import SearchPage from '~/Screens/KhamPha/SearchPage';
 import SearchingPage from '~/Screens/KhamPha/Searching/SearchingPage';
 
 import FollowPage from '~/Screens/TheoDoi/TheoDoiHome/FollowPage';
+import User from '~/Screens/TheoDoi/ChiTiet/User';
 
 import UserHomePage from '~/Screens/User/NotAcess/UserHomePage';
 import LoginHomePage from '~/Screens/User/NotAcess/LoginHome/LoginHomePage';
 import SDTPage from '~/Screens/User/NotAcess/LoginHome/XacNhanSDT/SDTPage';
 import LoginSDTPage from '~/Screens/User/NotAcess/LoginHome/Login/LoginSDT/LoginSDTPage';
 import ResgisterSDTPage from '~/Screens/User/NotAcess/LoginHome/Resgister/ResgisterSDT/ResgisterSDTPage';
+
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
@@ -50,6 +52,15 @@ function LoginHome() {
     );
 }
 
+function FollowPageHome() {
+    return (
+        <Stack.Navigator options={{ headerShown: false }}>
+            <Stack.Screen name="FollowPage" options={{ headerShown: false }} component={FollowPage} />
+            <Stack.Screen name="User" options={{ headerShown: false }} component={User} />
+        </Stack.Navigator>
+    );
+}
+
 function Navigation() {
     return (
         <Tab.Navigator
@@ -70,7 +81,7 @@ function Navigation() {
                         sourceIcon = focused ? 'AddCreate' : 'AddCreate';
                         namePage = '';
                     }
-                    if (route.name === 'FollowPage') {
+                    if (route.name === 'FollowPageHome') {
                         sourceIcon = focused ? 'HeartActive' : 'Heart';
                         namePage = 'Theo dõi';
                     }
@@ -121,8 +132,8 @@ function Navigation() {
                 }}
             />
             <Tab.Screen
-                name="FollowPage"
-                component={FollowPage}
+                name="FollowPageHome"
+                component={FollowPageHome}
                 options={{
                     tabBarLabel: '',
                     headerShown: false,
